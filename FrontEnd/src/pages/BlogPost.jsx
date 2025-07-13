@@ -6,23 +6,10 @@ import { API_NAME } from '../constant';
 const CreateBlog = () => {
   const [title, setTitle] = useState('');
   const [tag, setTag] = useState('');
-  const [imageBase64, setImageBase64] = useState('');
-  const [previewURL, setPreviewURL] = useState('');
+  const [imageURL, setImageURL] = useState('');
   const [description, setDescription] = useState('');
   const [secondDescription, setSecondDescription] = useState('');
   const [loading, setLoading] = useState(false);
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImageBase64(reader.result); // Base64 string
-        setPreviewURL(reader.result); // Also for preview
-      };
-      reader.readAsDataURL(file);
-    }
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,7 +19,7 @@ const CreateBlog = () => {
       const payload = {
         blog_title: title || '',
         tag: tag || '',
-        blog_img: imageBase64 || '',
+        blog_img: imageURL || '',
         description: description || '',
         second_description: secondDescription || '',
       };
@@ -48,8 +35,7 @@ const CreateBlog = () => {
       alert('✅ Blog posted successfully!');
       setTitle('');
       setTag('');
-      setImageBase64('');
-      setPreviewURL('');
+      setImageURL('');
       setDescription('');
       setSecondDescription('');
     } catch (err) {
@@ -90,15 +76,17 @@ const CreateBlog = () => {
             />
 
             <input
-              type="file"
-              accept="image/*"
-              onChange={handleImageChange}
-              className="block w-full text-sm text-gray-500"
+              type="text"
+              value={imageURL}
+              onChange={(e) => setImageURL(e.target.value)}
+              required
+              placeholder="Image URL (hosted)"
+              className="w-full px-4 py-2 border rounded-md"
             />
 
-            {previewURL && (
+            {imageURL && (
               <img
-                src={previewURL}
+                src={imageURL}
                 alt="Preview"
                 className="mt-4 h-48 rounded shadow object-cover"
               />
