@@ -32,9 +32,6 @@ Biova Surgicals is a professionally developed **e-commerce and portfolio web pla
 
 ---
 
-
----
-
 ## 🛠️ Installation & Setup
 
 ### ⚙️ Prerequisites:
@@ -45,5 +42,17 @@ Biova Surgicals is a professionally developed **e-commerce and portfolio web pla
 ### 📥 Clone the Repository:
 ```bash
 git clone https://github.com/mustafamubashir03/biovasurgicals-site
+---
 
+## 📦 Install Dependencies
+
+### Frontend
+```bash
+cd frontEnd
+npm install
+
+### Backend
+cd ../server
+npm install
+---
 
